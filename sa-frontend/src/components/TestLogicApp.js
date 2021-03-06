@@ -13,7 +13,7 @@ class TestLogicApp extends Component {
     }
 
     async getHealthStatus() {
-        const response = await fetch('http://localhost:8080/testLogicApp');
+        const response = await fetch('http://localhost:5000/testHealth');
         const data = await response.text();
         this.setState({ status: data, loading: false });
     }
