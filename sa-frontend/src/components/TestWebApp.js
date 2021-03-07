@@ -13,11 +13,16 @@ class TestWebApp extends Component {
     }
 
     async getHealthStatus() {
-        const response = await fetch('http://localhost:8080/testHealth');
+      let search = window.location.search;
+      let params = new URLSearchParams(search);
+      let url = params.get('url');
+
+      if(this.state.url != '') {
+        const response = await fetch(`http://${url}/testHealth`);
         const data = await response.text();
         this.setState({ status: data, loading: false });
+      }
     }
-
     static renderStatus(status) {
         return (
           <div>{status}</div>
