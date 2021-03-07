@@ -15,19 +15,26 @@ class Home extends Component {
     }
 
     analyzeSentence() {
-        fetch("http://localhost:8080/sentiment", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ sentence: this.textField.getValue() }),
-        })
-            .then((response) => response.json())
-            .then((data) => this.setState(data));
+        this.setState({ sentence: "", polarity: undefined });
+        if(this.textUrl.getValue() != "") {
+            fetch(this.textUrl.getValue() + "/sentiment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ sentence: this.textField.getValue() }),
+            })
+                .then((response) => response.json())
+                .then((data) => this.setState(data));
+        }
     }
 
     onEnterPress = (e) => {
         if (e.key === "Enter") {
             this.analyzeSentence();
         }
+    };
+
+    onUrlChange = (e) => {
+        window.saWebAppUrl = this.textUrl.getValue();
     };
 
     render() {
@@ -41,6 +48,11 @@ class Home extends Component {
         return (
             <MuiThemeProvider>
                 {" "}
+                <TextField
+                    ref={(ref) => (this.textUrl = ref)}
+                    onChange={this.onUrlChange.bind(this)}
+                    hintText="Enter Web App address"
+                />
                 <div className="centerize">
                     {" "}
                     <Paper zDepth={1} className="content">
