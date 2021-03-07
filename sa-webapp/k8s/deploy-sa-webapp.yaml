@@ -20,8 +20,11 @@ spec:
         app: sa-webapp
     spec:
       containers:
-        - image: sajalsood/sa-webapp
+        - image: sajalsood/sa-webapp:v4
           imagePullPolicy: Always
           name: sa-webapp
+          env:
+            - name: SA_LOGIC_API_URL
+              value: "http://sa-logic"
           ports:
-            - containerPort: 80
+            - containerPort: 8080
