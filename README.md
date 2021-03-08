@@ -3,8 +3,34 @@
 ## Authors
 
 -   Sajal Sood sood.sa@northeastern.edu 001054338
--   Naresh Agrawal agrawal.nar@northeastern.edu 001054600
--   Leena Daryani daryani.l@northeastern.edu 001035781
+
+## Kubernetes
+
+### Apply the service and deployment files
+
+```sh
+kubectl apply -f ./k8s
+```
+
+### Enable Port forwarding
+
+- WebApp
+
+```sh
+kubectl port-forward svc/sa-webapp 8080:80
+```
+
+- Logic
+
+```sh
+kubectl port-forward svc/sa-logic 5000:80
+```
+
+- Frontend
+
+```sh
+kubectl port-forward svc/sa-frontend 3000:80
+```
 
 ## Frontend
 
