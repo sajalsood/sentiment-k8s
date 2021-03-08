@@ -32,6 +32,20 @@ kubectl port-forward svc/sa-logic 5000:80
 kubectl port-forward svc/sa-frontend 3000:80
 ```
 
+## Test Endpoints
+
+- Frontend LogicApp
+
+```sh
+http://localhost:3000/testlogicapp?url=localhost:5000
+```
+
+- Frontend WebApp
+
+```sh
+http://localhost:3000/testwebapp?url=localhost:8080
+```
+
 ## Frontend
 
 ## Requirements
